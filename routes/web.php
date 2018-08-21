@@ -16,8 +16,14 @@ Route::get('/', function () {
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+	Route::get('/', [
+		'uses' => 'HomeController@index',
+		'as' => 'admin.index',
+	]);
+
 	Route::get('user', [
 		'uses' => 'UserController@index',
 		'as' => 'admin.user.index',
 	]);
+
 });

@@ -2,7 +2,7 @@
 <html lang="en-us">
     <head>
         <meta charset="utf-8">
-        <title>SmartDMS</title>
+        <title>Admin - @yield('title')</title>
         <meta name="description" content="">
         <meta name="author" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -25,6 +25,11 @@
         document.write('<script src="/js/libs/jquery-ui-1.10.3.min.js"><\/script>');
         }
         </script>
+        <style>
+            table th {
+                text-align: center;
+            }
+        </style>
     </head>
     <body class="smart-style-0">
         <!-- #HEADER -->

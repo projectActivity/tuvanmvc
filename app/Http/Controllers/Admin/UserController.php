@@ -17,6 +17,20 @@ class UserController extends Controller
 
     public function index()
     {
-    	return $this->userRepository->getAll();
+
+    	$title = 'Thành viên';
+    	$users = $this->userRepository->getAll(0);
+    	return view('backend.user.index', compact('title', 'users'));
+    	// return $users;
+    }
+
+    public function edit($id) 
+    {
+
+    }
+
+    public function destroy($id)
+    {
+
     }
 }

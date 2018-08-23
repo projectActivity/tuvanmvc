@@ -40,6 +40,11 @@ Route::group(['namespace' => 'Api'], function () {
 		'as'   => 'api.user.edit'
 	]);
 
+	Route::put('user/{id}', [
+		'uses' => 'UserController@update',
+		'as'   => 'api.user.update'
+	]);
+
 	Route::delete('user/{id}', [
 		'uses' => 'UserController@destroy',
 		'as'   => 'api.user.destroy'

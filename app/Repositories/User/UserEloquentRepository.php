@@ -24,6 +24,6 @@ class UserEloquentRepository extends EloquentRepository implements UserRepositor
 			$query->orderBy('email', 'asc');
 		}
 
-		return $query->get();
+		return $query->paginate(10);
 	}
 }

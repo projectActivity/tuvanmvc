@@ -40,4 +40,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function education()
+    {
+        return $this->hasOne('App\Models\Education', 'education_id');
+    }
 }

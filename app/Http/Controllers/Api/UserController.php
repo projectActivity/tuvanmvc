@@ -36,7 +36,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $data = $request->all();
+        // $data['password'] = empty($data['password']) ? '$2y$05$Swwp9/fEzEtPju2tRyVnBu9xtWnuNXhJJELqzClTIy8dESbY93k5e' : $data['password'];
+        // $user = $request->isMethod('put') ? $this->userRepository->update($data, $data['user_id']) : $this->userRepository->create($data);
+
+        $data['password'] = '$2y$05$Swwp9/fEzEtPju2tRyVnBu9xtWnuNXhJJELqzClTIy8dESbY93k5e';
+        $user = $this->userRepository->create($data);
+
+        return new UserResource($user);
     }
 
     /**
@@ -72,10 +79,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = $this->userRepository->findOrFail($id);
         $data = $request->all();
+        unset($data['user_id']);
+        $this->userRepository->update($data, $id);
 
+        $user = $this->userRepository->findOrFail($id);
 
+        return new UserResource($user);
     }
 
     /**

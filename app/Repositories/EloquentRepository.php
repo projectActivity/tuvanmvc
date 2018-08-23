@@ -34,8 +34,20 @@ abstract class EloquentRepository implements RepositoryInterface
         return $this->model->get($columns);
     }
 
+    public function paginate($perPage = 15, $columns = array('*')) {
+        return $this->model->paginate($perPage, $columns);
+    }
+
     public function find($id, $columns = array('*')) {
         return $this->model->find($id, $columns);
+    }
+
+    public function findBy($attribute, $value, $columns = array('*')) {
+        return $this->model->where($attribute, '=', $value)->first($columns);
+    }
+
+    public function findOrFail($id, $columns = array('*')) {
+        return $this->model->findOrFail($id, $columns);
     }
 
     public function create(array $data) {

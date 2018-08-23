@@ -12,9 +12,9 @@ class UserEloquentRepository extends EloquentRepository implements UserRepositor
 		return \App\Models\User::class;
 	}
 
-	public function getAll($page, $limix = 10, $full_name = false, $email = false)
+	public function getAll($full_name = false, $email = false)
 	{
-		$query = $this->model->select('id', 'full_name', 'email', 'address', 'avatar', 'phone', 'sex', 'birthday');
+		$query = $this->model->select();
 
 		if ($full_name) {
 			$query->orderBy('full_name', 'asc');
@@ -24,13 +24,6 @@ class UserEloquentRepository extends EloquentRepository implements UserRepositor
 			$query->orderBy('email', 'asc');
 		}
 
-		$datas = $query->get();
-
-		foreach ($datas as $key => $value) {
-			$value->delete = route('admin.user.destroy', $value->id);
-			$value->edit = route('admin.user.edit', $value->id);
-		}
-
-		return $datas;
+		return $query->get();
 	}
 }

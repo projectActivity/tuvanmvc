@@ -4,6 +4,7 @@
     <title>Đăng nhập</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <base href="{{ asset('') }}" >
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="favicon.ico"/>
@@ -11,7 +12,8 @@
     <link rel="stylesheet" type="text/css" href="backend/css/bootstrap.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="fontawesome/css/all.min.css">
-
+    <!--===============================================================================================-->
+    <script>window.Laravel = { csrfToken: '{{ csrf_token() }}' }</script>
     <style>
         body {
             height: 100vh;

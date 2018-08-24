@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Education;
+use App\Models\Position;
 
 class User extends Authenticatable
 {
@@ -43,6 +45,11 @@ class User extends Authenticatable
 
     public function education()
     {
-        return $this->hasOne('App\Models\Education', 'education_id');
+        return $this->belongsTo(Education::class, 'education_id');
+    }
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class, 'position_id');
     }
 }

@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 
 Route::group(['namespace' => 'Api'], function () {
 
-	// Api/User
+	// Api/Users
 	Route::get('users', [
 		'uses' => 'UserController@index',
 		'as'   => 'api.user.index'
@@ -51,6 +51,27 @@ Route::group(['namespace' => 'Api'], function () {
 	]);
 
 
-	// Api/Tags
+	// Api/Educations
+	Route::get('educations', [
+		'uses' => 'EducationController@index',
+		'as'   => 'api.education.index'
+	]);
 	
+	// Api/Positions
+	Route::get('positions', [
+		'uses' => 'PositionController@index',
+		'as'   => 'api.position.index'
+	]);
+
+	// Api/Tags
+	Route::get('tags', [
+		'uses' => 'TagController@index',
+		'as'   => 'api.tag.index'
+	]);
+
+	// Api/Slides
+	Route::get('slides', [
+		'uses' => 'SlideController@index',
+		'as'   => 'api.slide.index'
+	]);
 });

@@ -28,5 +28,25 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\User\UserRepositoryInterface',
             'App\Repositories\User\UserEloquentRepository'
         );
+
+        $this->app->bind(
+            'App\Repositories\Education\EducationRepositoryInterface',
+            'App\Repositories\Education\EducationEloquentRepository'
+        );
+        
+        $this->app->bind(
+            'App\Repositories\Position\PositionRepositoryInterface',
+            'App\Repositories\Position\PositionEloquentRepository'
+        );
+
+        $this->app->bind(
+            'App\Repositories\Tag\TagRepositoryInterface',
+            'App\Repositories\Tag\TagEloquentRepository'
+        );
+
+        $this->app->bind(
+            'App\Repositories\Slide\SlideRepositoryInterface',
+            'App\Repositories\Slide\SlideEloquentRepository'
+        );
     }
 }

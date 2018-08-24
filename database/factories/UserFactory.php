@@ -19,6 +19,9 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
     $idsEdu = Education::all(['id']);
     $idsPos = Position::all(['id']);
 
+    $lgEdu = count($idsEdu);
+    $lgPos = count($idsPos);
+
     return [
         'full_name'      => $faker->name,
         'email'          => $faker->unique()->safeEmail,
@@ -28,8 +31,8 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'address'        => $faker->streetAddress,
         'birthday'       => $faker->date($format = 'Y-m-d', $max = 'now'),
         'sex'            => rand(0, 1),
-        'position_id'    => $idsPos[rand(0, count($idsPos) - 1)],
-        'education_id'   => $idsEdu[rand(0, count($idsEdu) - 1)],
+        'position_id'    => $idsPos[rand(0, $lgPos -1)],
+        'education_id'   => $idsEdu[rand(0, $lgEdu -1)],
         'experience'     => $faker->paragraph($nbSentences = 6, $variableNbSentences = true),
         'avatar'         => $faker->imageUrl($width = 640, $height = 480),
         'introduction'   => $faker->paragraph($nbSentences = 3, $variableNbSentences = true)

@@ -77,10 +77,10 @@
 				fetch(page_url)
 					.then(res => res.json())
 					.then(res => {
-						this.users = res.data;
+						vm.users = res.data;
 						vm.makePaginations(res.meta, res.links);
 					})
-					.catch(err => console.log(err));
+					.catch(err => vm.$noty.delete(err));
 			},
 
 			makePaginations(meta, links) {
@@ -95,17 +95,21 @@
 			},
 
 			deleteUser(id) {
-				if(confirm('Are you sure?')) {
-					fetch(`api/user/${id}`, {
-						method: 'delete'
-					})
-					.then(res => res.json())
-					.then(data => {
-						alert('User removed');
-						this.fetchUsers();
-					})
-					.catch(err => console.log(err))
-				}
+				let vm = this;
+				alertify.confirm('Delete', 'Are you sure?', 
+					function(){ 
+						fetch(`api/user/${id}`, {
+							method: 'delete'
+						})
+						.then(res => res.json())
+						.then(data => {
+							vm.$noty.info("Delete successfully!");
+							vm.fetchUsers();
+						})
+						.catch(err => vm.$noty.delete(err)) 
+					}, 
+					function(){ }
+				);
 			},
 
 			addUser() {
@@ -123,10 +127,10 @@
 						this.user.full_name = '';
 						this.user.email = '';
 						this.user.introduction = '';
-						alert('User Added');
+						this.$noty.info("Add successfully!");
 						this.fetchUsers();
 					})
-					.catch(err => console.log(err))
+					.catch(err => this.$noty.delete(err))
 				} else {
 					// Update
 					fetch(`api/user/${this.user.user_id}`, {
@@ -146,10 +150,10 @@
 						this.user.birthday = '';
 						this.user.sex = '';
 						this.user_id = '';
-						alert('User Edited');
+						this.$noty.info("Update successfully!");
 						this.fetchUsers();
 					})
-					.catch(err => console.log(err));
+					.catch(err => this.$noty.delete(err));
 				}
 			},
 

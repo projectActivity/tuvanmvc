@@ -47405,6 +47405,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -47653,6 +47660,54 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
+          _c("div", { staticClass: "form-check-inline" }, [
+            _c("label", { staticClass: "form-check-label" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.user.sex,
+                    expression: "user.sex"
+                  }
+                ],
+                staticClass: "form-check-input",
+                attrs: { type: "radio", value: "1" },
+                domProps: { checked: _vm._q(_vm.user.sex, "1") },
+                on: {
+                  change: function($event) {
+                    _vm.$set(_vm.user, "sex", "1")
+                  }
+                }
+              }),
+              _vm._v("Male")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-check-inline" }, [
+            _c("label", { staticClass: "form-check-label" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.user.sex,
+                    expression: "user.sex"
+                  }
+                ],
+                staticClass: "form-check-input",
+                attrs: { type: "radio", value: "0" },
+                domProps: { checked: _vm._q(_vm.user.sex, "0") },
+                on: {
+                  change: function($event) {
+                    _vm.$set(_vm.user, "sex", "0")
+                  }
+                }
+              }),
+              _vm._v("Female")
+            ])
+          ]),
+          _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
             _c("input", {
               directives: [
@@ -47782,6 +47837,8 @@ var render = function() {
           _c("h3", [_vm._v(_vm._s(user.full_name))]),
           _vm._v(" "),
           _c("p", [_vm._v(_vm._s(user.introduction))]),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(user.sex ? "Male" : "Female"))]),
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),

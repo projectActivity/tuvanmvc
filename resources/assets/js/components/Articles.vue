@@ -14,6 +14,12 @@
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Birthday" v-model="user.birthday">
 			</div>
+			<div class="form-check-inline">
+				<label class="form-check-label"><input type="radio" class="form-check-input" value="1" v-model="user.sex">Male</label>
+			</div>
+			<div class="form-check-inline">
+				<label class="form-check-label"><input type="radio" class="form-check-input" value="0" v-model="user.sex">Female</label>
+			</div>
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Phone number" v-model="user.phone">
 			</div>
@@ -38,6 +44,7 @@
 		<div class="card card-body mb-2" v-for="user in users" v-bind:key="user.id">
 			<h3>{{ user.full_name }}</h3>
 			<p>{{ user.introduction }}</p>
+			<p>{{ user.sex ? 'Male' : 'Female' }}</p>
 			<hr>
 			<button class="btn btn-warning mb-3" @click="editUser(user)">Edit</button>
 			<button class="btn btn-danger" @click="deleteUser(user.id)">Delete</button>

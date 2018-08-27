@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Education;
 
 class EducationsTableSeeder extends Seeder
 {
@@ -11,7 +12,7 @@ class EducationsTableSeeder extends Seeder
      */
     public function run()
     {
-    	DB::table('educations')->delete();
+    	Education::truncate();
 
         $data = [
         	['name' => 'Đại học'],

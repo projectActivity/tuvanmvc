@@ -74,4 +74,30 @@ Route::group(['namespace' => 'Api'], function () {
 		'uses' => 'SlideController@index',
 		'as'   => 'api.slide.index'
 	]);
+
+	// Api/Catagories
+	Route::get('categories', [
+		'uses' => 'CategoryController@index',
+		'as' => 'api.category.index'
+	]);
+
+	Route::get('category/{id}/edit', [
+		'uses' => 'CategoryController@edit',
+		'as' => 'api.category.edit'
+	]);
+
+	Route::post('category', [
+		'uses' => 'CategoryController@store',
+		'as' => 'api.category.store'
+	]);
+
+	Route::put('category/{id}', [
+		'uses' => 'CategoryController@update',
+		'as' => 'api.category.update'
+	]);
+
+	Route::delete('category/{id}', [
+		'uses' => 'CategoryController@destroy',
+		'as' => 'api.category.destroy'
+	]);
 });

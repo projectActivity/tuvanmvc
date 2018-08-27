@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Position;
 
 class PositionsTableSeeder extends Seeder
 {
@@ -11,7 +12,7 @@ class PositionsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('positions')->delete();
+        Position::truncate();
 
         $data = [
         	['name' => 'Giám đốc'],

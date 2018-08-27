@@ -81,11 +81,17 @@ class UserController extends Controller
     {
         $data = $request->all();
         unset($data['user_id']);
-        $this->userRepository->update($data, $id);
+        
+        if ($this->userRepository->update($data, $id)) {
+            $user = $this->userRepository->findOrFail($id);
+            return new UserResource($user);
+        }
 
-        $user = $this->userRepository->findOrFail($id);
-
-        return new UserResource($user);
+        return response()->json([
+            'data' => [
+                'errors' => trans('user.error.update')
+            ]
+        ]);
     }
 
     /**
@@ -100,5 +106,11 @@ class UserController extends Controller
         if ($this->userRepository->delete($id)) {
             return new UserResource($user);
         }
+
+        return response()->json([
+            'data' => [
+                'errors' => trans('user.error.delete')
+            ]
+        ]);
     }
 }

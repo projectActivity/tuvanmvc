@@ -3,7 +3,7 @@
 use Faker\Generator as Faker;
 use App\Models\ArticleType;
 
-$factory->define(App\Models\Catagory::class, function (Faker $faker) {
+$factory->define(App\Models\Category::class, function (Faker $faker) {
 
 	$arrIdsArTy = ArticleType::all(['id']);
 	$radIndex = rand(0, (count($arrIdsArTy) - 1));

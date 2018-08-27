@@ -14,8 +14,8 @@ class AddUserByColumnCatagoriesTalbe extends Migration
     public function up()
     {
         Schema::table('catagories', function (Blueprint $table) {
-            $table->integer('created_by');
-            $table->integer('updated_by');
+            $table->integer('created_by')->nullable()->comment('Nguoi tao');
+            $table->integer('updated_by')->nullable()->comment('Nguoi sua');
         });
     }
 

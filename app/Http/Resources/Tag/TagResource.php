@@ -20,4 +20,12 @@ class TagResource extends JsonResource
             'description' => $this->description
         ];
     }
+
+    public function with($request) 
+    {
+        return [
+            'version' => '1.0.0',
+            'author'  => 'Kuon Vu'
+        ];  
+    }
 }

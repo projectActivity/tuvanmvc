@@ -26,4 +26,12 @@ class CategoryResource extends JsonResource
             'delete' => route('api.category.destroy', $this->id)
         ];
     }
+
+    public function with($request) 
+    {
+        return [
+            'version' => '1.0.0',
+            'author'  => 'Kuon Vu'
+        ];  
+    }
 }

@@ -22,4 +22,12 @@ class SlideResource extends JsonResource
             'position' => $this->position
         ];
     }
+
+    public function with($request) 
+    {
+        return [
+            'version' => '1.0.0',
+            'author'  => 'Kuon Vu'
+        ];  
+    }
 }

@@ -15,8 +15,16 @@ class ArticleTypeResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            'id'    => $this->id,
             'title' => $this->title
         ];
+    }
+
+    public function with($request) 
+    {
+        return [
+            'version' => '1.0.0',
+            'author'  => 'Kuon Vu'
+        ];  
     }
 }

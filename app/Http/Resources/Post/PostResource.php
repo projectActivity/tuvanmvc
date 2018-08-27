@@ -19,4 +19,12 @@ class PostResource extends JsonResource
             'name' => $this->name
         ];
     }
+
+    public function with($request) 
+    {
+        return [
+            'version' => '1.0.0',
+            'author'  => 'Kuon Vu'
+        ];  
+    }
 }

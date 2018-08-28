@@ -48147,6 +48147,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 // const axios = require('axios');
 
@@ -48231,44 +48235,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				console.log("Huy");
 			});
 		},
+		createUser: function createUser() {
+			this.bindDatas();
+			$('#createModal').modal('show');
+		},
 		addUser: function addUser() {
-			var _this = this;
-
+			var vm = this;
 			// Add
-			// axios
-			// 	.post('api/user', this.user)
-			// 	.then(function (res) {
-			// 		$('#createModal').modal('hide');
-			// 		this.errors = [];
-			// 		this.user = [];
-			// 		// $('#createModal').modal('hide');
-			// 		this.$noty.success("Add successfully!");
-			// 		this.fetchUsers();
-			// 	})
-			// 	.catch(error => {
-			// 		console.error(error);
-			// 	    this.errors = error.response.data.errors;
-			// 	});
-			fetch('api/user', {
+			axios({
 				method: 'post',
-				body: JSON.stringify(this.user),
+				url: 'api/user',
+				data: JSON.stringify(this.user),
 				headers: {
 					'content-type': 'application/json'
 				}
 			}).then(function (res) {
-				return res.json();
-			}).then(function (data) {
 				$('#createModal').modal('hide');
-				_this.user = [];
-				_this.$noty.info("Add successfully!");
-				_this.fetchUsers();
-			}).catch(function (err) {
-				// this.errors = err.response.data.errors;
-				console.log(err.response);
+				// this.errors = [];
+				vm.user.full_name = '';
+				vm.user.email = '';
+				vm.user.address = '';
+				vm.user.birthday = '';
+				vm.user.sex = 0;
+				vm.user.phone = '';
+				vm.user.introduction = '';
+				vm.user.position_id = '';
+				vm.user.education_id = '';
+				$('#createModal').modal('hide');
+				vm.$noty.success("Add successfully!");
+				vm.fetchUsers();
+			}).catch(function (error) {
+				console.error(error);
+				vm.errors = error.response.data.errors;
 			});
 		},
 		editUser: function editUser(user) {
-			var _this2 = this;
+			var _this = this;
 
 			this.bindDatas();
 			var vm = this;
@@ -48278,11 +48280,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}).then(function (res) {
 				vm.user_update = res.data;
 			}).catch(function (error) {
-				_this2.errors = error.response.data.errors;
+				_this.errors = error.response.data.errors;
 			});
 		},
 		updateUser: function updateUser() {
-			var _this3 = this;
+			var _this2 = this;
 
 			// Update
 			fetch('api/user/' + this.user_update.id, {
@@ -48295,10 +48297,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				return res.json();
 			}).then(function (data) {
 				$('#updateModal').modal('hide');
-				_this3.$noty.success("Update successfully!");
-				_this3.fetchUsers();
+				_this2.$noty.success("Update successfully!");
+				_this2.fetchUsers();
 			}).catch(function (err) {
-				return _this3.$noty.delete(err);
+				return _this2.$noty.delete(err);
 			});
 		}
 	}
@@ -48337,83 +48339,67 @@ var render = function() {
                 _vm._m(0),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group",
-                      class: { "has-error": _vm.errors.full_name }
-                    },
-                    [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.user.full_name,
-                            expression: "user.full_name"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "text", placeholder: "Full name" },
-                        domProps: { value: _vm.user.full_name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.user, "full_name", $event.target.value)
-                          }
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.user.full_name,
+                          expression: "user.full_name"
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.full_name
-                        ? _c(
-                            "span",
-                            { staticClass: "help-block text-danger" },
-                            [_vm._v(_vm._s(_vm.errors.full_name[0]))]
-                          )
-                        : _vm._e()
-                    ]
-                  ),
+                      ],
+                      staticClass: "form-control",
+                      class: { "is-invalid": _vm.errors.full_name },
+                      attrs: { type: "text", placeholder: "Full name" },
+                      domProps: { value: _vm.user.full_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.user, "full_name", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.full_name
+                      ? _c("span", { staticClass: "help-block text-danger" }, [
+                          _vm._v(_vm._s(_vm.errors.full_name[0]))
+                        ])
+                      : _vm._e()
+                  ]),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group",
-                      class: { "has-error": _vm.errors.email }
-                    },
-                    [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.user.email,
-                            expression: "user.email"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "text", placeholder: "Email" },
-                        domProps: { value: _vm.user.email },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.user, "email", $event.target.value)
-                          }
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.user.email,
+                          expression: "user.email"
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.email
-                        ? _c(
-                            "span",
-                            { staticClass: "help-block text-danger" },
-                            [_vm._v(_vm._s(_vm.errors.email[0]))]
-                          )
-                        : _vm._e()
-                    ]
-                  ),
+                      ],
+                      staticClass: "form-control",
+                      class: { "is-invalid": _vm.errors.email },
+                      attrs: { type: "text", placeholder: "Email" },
+                      domProps: { value: _vm.user.email },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.user, "email", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.email
+                      ? _c("span", { staticClass: "help-block text-danger" }, [
+                          _vm._v(_vm._s(_vm.errors.email[0]))
+                        ])
+                      : _vm._e()
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("input", {
@@ -48464,8 +48450,13 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "form-check-inline" }, [
-                      _c("label", { staticClass: "form-check-label" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "custom-control custom-radio custom-control-inline"
+                      },
+                      [
                         _c("input", {
                           directives: [
                             {
@@ -48475,8 +48466,8 @@ var render = function() {
                               expression: "user.sex"
                             }
                           ],
-                          staticClass: "form-check-input",
-                          attrs: { type: "radio", value: "1" },
+                          staticClass: "custom-control-input",
+                          attrs: { type: "radio", id: "maleRad", value: "1" },
                           domProps: { checked: _vm._q(_vm.user.sex, "1") },
                           on: {
                             change: function($event) {
@@ -48484,12 +48475,25 @@ var render = function() {
                             }
                           }
                         }),
-                        _vm._v("Male")
-                      ])
-                    ]),
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass: "custom-control-label",
+                            attrs: { for: "maleRad" }
+                          },
+                          [_vm._v("Male")]
+                        )
+                      ]
+                    ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-check-inline" }, [
-                      _c("label", { staticClass: "form-check-label" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "custom-control custom-radio custom-control-inline"
+                      },
+                      [
                         _c("input", {
                           directives: [
                             {
@@ -48499,8 +48503,8 @@ var render = function() {
                               expression: "user.sex"
                             }
                           ],
-                          staticClass: "form-check-input",
-                          attrs: { type: "radio", value: "0" },
+                          staticClass: "custom-control-input",
+                          attrs: { type: "radio", id: "femaleRad", value: "0" },
                           domProps: { checked: _vm._q(_vm.user.sex, "0") },
                           on: {
                             change: function($event) {
@@ -48508,9 +48512,17 @@ var render = function() {
                             }
                           }
                         }),
-                        _vm._v("Female")
-                      ])
-                    ])
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass: "custom-control-label",
+                            attrs: { for: "femaleRad" }
+                          },
+                          [_vm._v("Female")]
+                        )
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
@@ -48811,8 +48823,13 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "form-check-inline" }, [
-                      _c("label", { staticClass: "form-check-label" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "custom-control custom-radio custom-control-inline"
+                      },
+                      [
                         _c("input", {
                           directives: [
                             {
@@ -48822,8 +48839,8 @@ var render = function() {
                               expression: "user_update.sex"
                             }
                           ],
-                          staticClass: "form-check-input",
-                          attrs: { type: "radio", value: "1" },
+                          staticClass: "custom-control-input",
+                          attrs: { type: "radio", id: "maleRadUp", value: "1" },
                           domProps: {
                             checked: _vm._q(_vm.user_update.sex, "1")
                           },
@@ -48833,12 +48850,25 @@ var render = function() {
                             }
                           }
                         }),
-                        _vm._v("Male")
-                      ])
-                    ]),
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass: "custom-control-label",
+                            attrs: { for: "maleRad" }
+                          },
+                          [_vm._v("Male")]
+                        )
+                      ]
+                    ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-check-inline" }, [
-                      _c("label", { staticClass: "form-check-label" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "custom-control custom-radio custom-control-inline"
+                      },
+                      [
                         _c("input", {
                           directives: [
                             {
@@ -48848,8 +48878,12 @@ var render = function() {
                               expression: "user_update.sex"
                             }
                           ],
-                          staticClass: "form-check-input",
-                          attrs: { type: "radio", value: "0" },
+                          staticClass: "custom-control-input",
+                          attrs: {
+                            type: "radio",
+                            id: "femaleRadUp",
+                            value: "0"
+                          },
                           domProps: {
                             checked: _vm._q(_vm.user_update.sex, "0")
                           },
@@ -48859,9 +48893,17 @@ var render = function() {
                             }
                           }
                         }),
-                        _vm._v("Female")
-                      ])
-                    ])
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass: "custom-control-label",
+                            attrs: { for: "femaleRad" }
+                          },
+                          [_vm._v("Female")]
+                        )
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
@@ -49045,14 +49087,10 @@ var render = function() {
           "button",
           {
             staticClass: "btn btn-primary",
-            attrs: {
-              type: "button",
-              "data-toggle": "modal",
-              "data-target": "#createModal"
-            },
+            attrs: { type: "button" },
             on: {
               click: function($event) {
-                _vm.bindDatas()
+                _vm.createUser()
               }
             }
           },

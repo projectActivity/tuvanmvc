@@ -15,12 +15,12 @@
 				      	</div>
 				      	<div class="modal-body">
 				        	
-								<div class="form-group" :class="{'has-error': errors.full_name}">
-									<input type="text" class="form-control" placeholder="Full name" v-model="user.full_name">
+								<div class="form-group" >
+									<input type="text" :class="{'is-invalid': errors.full_name}" class="form-control" placeholder="Full name" v-model="user.full_name">
 									<span v-if="errors.full_name" class="help-block text-danger">{{ errors.full_name[0] }}</span>
 								</div>
-								<div class="form-group" :class="{'has-error': errors.email}">
-									<input type="text" class="form-control" placeholder="Email" v-model="user.email">
+								<div class="form-group">
+									<input type="text" :class="{'is-invalid': errors.email}" class="form-control" placeholder="Email" v-model="user.email">
 									<span v-if="errors.email" class="help-block text-danger">{{ errors.email[0] }}</span>
 								</div>
 								<div class="form-group">
@@ -30,11 +30,13 @@
 									<input type="text" class="form-control" placeholder="Birthday" v-model="user.birthday">
 								</div>
 								<div class="form-group">
-									<div class="form-check-inline">
-										<label class="form-check-label"><input type="radio" class="form-check-input" value="1" v-model="user.sex">Male</label>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" id="maleRad" value="1" v-model="user.sex" class="custom-control-input">
+										<label class="custom-control-label" for="maleRad">Male</label>
 									</div>
-									<div class="form-check-inline">
-										<label class="form-check-label"><input type="radio" class="form-check-input" value="0" v-model="user.sex">Female</label>
+									<div class="custom-control custom-radio custom-control-inline">
+									  	<input type="radio" id="femaleRad" value="0" v-model="user.sex" class="custom-control-input">
+										<label class="custom-control-label" for="femaleRad">Female</label>
 									</div>
 								</div>
 								<div class="form-group">
@@ -52,7 +54,7 @@
 								  	<option value="">--- Positions ---</option>
 								  	<option 
 								  		v-for="pos in positions" 
-								  		v-bind:value="pos.id">
+								  		:value="pos.id">
 								  		{{ pos.name }}
 								  	</option>
 								</select>
@@ -97,11 +99,13 @@
 									<input type="text" class="form-control" placeholder="Birthday" v-model="user_update.birthday">
 								</div>
 								<div class="form-group">
-									<div class="form-check-inline">
-										<label class="form-check-label"><input type="radio" class="form-check-input" value="1" v-model="user_update.sex">Male</label>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" id="maleRadUp" value="1" v-model="user_update.sex" class="custom-control-input">
+										<label class="custom-control-label" for="maleRad">Male</label>
 									</div>
-									<div class="form-check-inline">
-										<label class="form-check-label"><input type="radio" class="form-check-input" value="0" v-model="user_update.sex">Female</label>
+									<div class="custom-control custom-radio custom-control-inline">
+									  	<input type="radio" id="femaleRadUp" value="0" v-model="user_update.sex" class="custom-control-input">
+										<label class="custom-control-label" for="femaleRad">Female</label>
 									</div>
 								</div>
 								<div class="form-group">
@@ -141,18 +145,18 @@
 		
 		<div class="row">
 			<div class="col-md-3">
-				<button type="button" @click="bindDatas()" class="btn btn-primary" data-toggle="modal" data-target="#createModal">Create User</button>
+				<button type="button" @click="createUser()" class="btn btn-primary">Create User</button>
 			</div>
 			<div class="offset-md-6 col-md-3">
 				<nav>
 					<ul class="pagination right">
-						<li v-bind:class="[{disabled: !pagination.prev_page_url }]" class="page-item">
+						<li :class="[{disabled: !pagination.prev_page_url }]" class="page-item">
 							<a href="#" class="page-link" @click="fetchUsers(pagination.prev_page_url)">Previous</a>
 						</li>
 						<li class="page-item disabled">
 							<a href="#" class="page-link text-dark">Page {{ pagination.current_page }} of {{ pagination.last_page }}</a>
 						</li>
-						<li v-bind:class="[{disabled: !pagination.next_page_url }]" class="page-item">
+						<li :class="[{disabled: !pagination.next_page_url }]" class="page-item">
 							<a href="#" class="page-link" @click="fetchUsers(pagination.next_page_url)">Next</a>
 						</li>
 					</ul>
@@ -173,7 +177,7 @@
 				    </tr>
 				</thead>
 				<tbody>
-					<tr v-for="(user, index) in users" v-bind:key="user.id">
+					<tr v-for="(user, index) in users" :key="user.id">
 						<td>{{ index + 1 }}</td>
 						<td>{{ user.full_name }}</td>
 						<td>{{ user.sex ? 'Male' : 'Female' }}</td>
@@ -291,39 +295,41 @@
 				);
 			},
 
+			createUser() {
+				this.bindDatas();
+				$('#createModal').modal('show');
+			},
+
 			addUser() {
+				let vm = this;
 				// Add
-				// axios
-				// 	.post('api/user', this.user)
-				// 	.then(function (res) {
-				// 		$('#createModal').modal('hide');
-				// 		this.errors = [];
-				// 		this.user = [];
-				// 		// $('#createModal').modal('hide');
-				// 		this.$noty.success("Add successfully!");
-				// 		this.fetchUsers();
-				// 	})
-				// 	.catch(error => {
-				// 		console.error(error);
-				// 	    this.errors = error.response.data.errors;
-				// 	});
-				fetch('api/user', {
+				axios({
 					method: 'post',
-					body: JSON.stringify(this.user),
+					url: 'api/user', 
+					data: JSON.stringify(this.user),
 					headers: {
 						'content-type': 'application/json'
 					}
- 				})
- 				.then(res => res.json())
- 				.then(data => {
- 					$('#createModal').modal('hide');
-					this.user = [];
-					this.$noty.info("Add successfully!");
-					this.fetchUsers();
 				})
-				.catch(err => {
-					// this.errors = err.response.data.errors;
-					console.log(err.response);
+				.then(function (res) {
+					$('#createModal').modal('hide');
+					// this.errors = [];
+					vm.user.full_name    = '';
+					vm.user.email        = '';
+					vm.user.address      = '';
+					vm.user.birthday     = '';
+					vm.user.sex          = 0;
+					vm.user.phone        = '';
+					vm.user.introduction = '';
+					vm.user.position_id  = '';
+					vm.user.education_id = '';
+					$('#createModal').modal('hide');
+					vm.$noty.success("Add successfully!");
+					vm.fetchUsers();
+				})
+				.catch(error => {
+					console.error(error);
+				    vm.errors = error.response.data.errors;
 				});
 			},
 

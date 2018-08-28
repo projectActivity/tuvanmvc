@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\User\StoreUserRequest;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User\UserResource;
@@ -37,9 +38,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // $data['password'] = empty($data['password']) ? '$2y$05$Swwp9/fEzEtPju2tRyVnBu9xtWnuNXhJJELqzClTIy8dESbY93k5e' : $data['password'];
-        // $user = $request->isMethod('put') ? $this->userRepository->update($data, $data['user_id']) : $this->userRepository->create($data);
-
+        // 123456
         $data['password'] = '$2y$05$Swwp9/fEzEtPju2tRyVnBu9xtWnuNXhJJELqzClTIy8dESbY93k5e';
         $user = $this->userRepository->create($data);
 
@@ -79,8 +78,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
-        unset($data['user_id']);
+        $data = $this->userRepository->formatUser($request->all());
         
         if ($this->userRepository->update($data, $id)) {
             $user = $this->userRepository->findOrFail($id);

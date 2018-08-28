@@ -9,11 +9,12 @@ require('./bootstrap');
 import Vue from 'vue'
 import VueNoty from 'vuejs-noty'
 import 'vuejs-noty/dist/vuejs-noty.css'
+import axios from 'axios';
 
 Vue.use(VueNoty, {
-  timeout: 2000,
-  progressBar: true,
-  layout: 'topCenter'
+	timeout: 1000,
+	progressBar: true,
+	layout: 'topRight'
 });
 
 window.Vue = require('vue');

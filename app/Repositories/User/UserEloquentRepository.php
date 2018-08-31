@@ -26,6 +26,7 @@ class UserEloquentRepository extends EloquentRepository implements UserRepositor
 		// }
 
 		return $query->paginate(10);
+		// return $query->get();
 	}
 
 	public function formatUser(array $data)

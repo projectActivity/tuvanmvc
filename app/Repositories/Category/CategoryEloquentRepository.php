@@ -9,18 +9,26 @@ class CategoryEloquentRepository extends EloquentRepository implements CategoryR
 {
 	const DISPLAY = 1;
 	const DELETE = 1;
+	const TOP = 1;
+	const LOAIDICHVU = 2;
 
 	public function model()
 	{
 		return \App\Models\Category::class;
 	}
 
-
 	public function getAllCategories() 
 	{
-		$query = $this->model->select(['id', 'title', 'image', 'description', 'is_display', 'article_type_id', 'link', 'is_top', 'created_at', 'updated_at']);
-
+		$query = $this->model->select();
 		$query->where('is_delete', '!=', self::DELETE);
+
+		return $query->get();
+	}
+
+	public function getCategoriesByServices()
+	{
+		$query = $this->model->select();
+		$query->where('article_type_id', '=', self::LOAIDICHVU)->where('is_delete', '!=', self::DELETE);
 
 		return $query->get();
 	}

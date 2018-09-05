@@ -106,4 +106,11 @@ Route::group(['namespace' => 'Api'], function () {
 		'uses' => 'ArticleTypeController@index',
 		'as'   => 'api.articleType.index'
 	]);
+
+	// Api/Services
+	Route::get('services', [
+		'uses' => 'ServiceController@index',
+		'as' => 'api.service.index'
+	]);
+
 });

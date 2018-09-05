@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSlugToTableCategories extends Migration
+class AddIsModeToTableServices extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddSlugToTableCategories extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->string('slug', 500)->comment('Slug ---> title')->nullable()->after('title');
+        Schema::table('services', function (Blueprint $table) {
+            $table->boolean('is_mode')->default(0)->comment('Noi bat')->after('description');
         });
     }
 
@@ -25,8 +25,8 @@ class AddSlugToTableCategories extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->dropColumn('slug');
+        Schema::table('services', function (Blueprint $table) {
+            $table->dropColumn('is_mode');
         });
     }
 }

@@ -22,6 +22,7 @@ class CategoryResource extends JsonResource
             'article_type' => $this->articleType,
             'link' => $this->link,
             'is_top' => $this->is_top,
+            'slug' => $this->slug,
             'edit' => route('api.category.edit', $this->id),
             'delete' => route('api.category.destroy', $this->id)
         ];

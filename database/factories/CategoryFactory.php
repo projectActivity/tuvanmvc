@@ -16,5 +16,6 @@ $factory->define(App\Models\Category::class, function (Faker $faker) {
         'article_type_id' => $arrIdsArTy[$radIndex],
         'is_delete' => rand(0, 1),
         'link' => $faker->url,
+        'slug' => $faker->slug,
     ];
 });

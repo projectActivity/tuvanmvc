@@ -17,6 +17,7 @@ class Category extends Model
     	'article_type_id',
     	'link',
     	'is_top',
+        'slug',
     	'created_at',
     	'updated_at'
     ];

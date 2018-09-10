@@ -124,4 +124,10 @@ Route::group(['namespace' => 'Api'], function () {
 		'uses' => 'CalendarController@index',
 		'as' => 'api.calendar.index'
 	]);
+
+	// Api/Partner
+	Route::get('partners', [
+		'uses' => 'PartnerController@index',
+		'as' => 'api.partner.index'
+	]);
 });

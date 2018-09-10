@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Repositories\PartnerRepositoryInterface
+namespace App\Repositories\Partner;
 
 interface PartnerRepositoryInterface 
 {

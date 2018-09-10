@@ -7,28 +7,28 @@ use App\Http\Controllers\Controller;
 
 class AccountController extends Controller
 {
-    public function login()
-    {
-    	return view('backend.account.login');
-    }
+  public function login()
+  {
+  	return view('backend.account.login');
+  }
 
-    public function singin(Request $request)
-    {
+  public function singin(Request $request)
+  {
 
-    }
+  }
 
-    public function forgotPassword()
-    {
-        return view('backend.account.forgotPassword');
-    }
+  public function forgotPassword()
+  {
+    return view('backend.account.forgotPassword');
+  }
 
-    public function sendEmail(Request $request) 
-    {
-        
-    }
+  public function sendEmail(Request $request) 
+  {
+      
+  }
 
-    public function logout()
-    {
+  public function logout()
+  {
 
-    }
+  }
 }

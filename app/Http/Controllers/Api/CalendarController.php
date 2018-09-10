@@ -9,17 +9,17 @@ use App\Repositories\Calendar\CalendarRepositoryInterface;
 
 class CalendarController extends Controller
 {
-    protected $calendarRepository;
+  protected $calendarRepository;
 
-    public function __construct( CalendarRepositoryInterface $calendarRepository) 
-    {
-    	$this->calendarRepository = $calendarRepository;
-    }
+  public function __construct( CalendarRepositoryInterface $calendarRepository) 
+  {
+  	$this->calendarRepository = $calendarRepository;
+  }
 
-    public function index() 
-    {
-    	$calendars = $this->calendarRepository->getAllCalendars();
+  public function index() 
+  {
+  	$calendars = $this->calendarRepository->getAllCalendars();
 
-    	return CalendarResource::collection($calendars);
-    }
+  	return CalendarResource::collection($calendars);
+  }
 }

@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    protected $table = 'tags';
+  protected $table = 'tags';
 
-    protected $fillable = [
-    	'id', 'name', 'description'
-    ];
+  protected $fillable = [
+  	'id', 'name', 'description'
+  ];
+
+  
 }

@@ -6,20 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Slide extends Model
 {
-    protected $table = 'slides';
+  protected $table = 'slides';
 
-    protected $fillable = [
-    	'id', 
-    	'image', 
-    	'url',
-    	'is_display',
-    	'position'
-    ];
+  protected $fillable = [
+  	'id', 
+  	'image', 
+  	'url',
+  	'is_display',
+  	'position'
+  ];
 
-    protected $hidden = [
-    	'created_at',
-    	'updated_at',
-    	'created_by',
-    	'updated_by'
-    ];
+  protected $hidden = [
+  	'created_at',
+  	'updated_at',
+  	'created_by',
+  	'updated_by'
+  ];
 }

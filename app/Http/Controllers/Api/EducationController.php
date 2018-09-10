@@ -16,9 +16,9 @@ class EducationController extends Controller
 		$this->educationRepository = $educationRepository;
 	}
 
-    public function index()
-    {
-    	$educations = $this->educationRepository->getAllEducations();
-    	return EducationResource::collection($educations);
-    }
+  public function index()
+  {
+  	$educations = $this->educationRepository->getAllEducations();
+  	return EducationResource::collection($educations);
+  }
 }

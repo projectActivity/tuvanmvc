@@ -16,39 +16,39 @@ class CategoryController extends Controller
 		$this->categoryRepository = $categoryRepository;
 	}
 
-    public function index()
-    {
-    	$categories = $this->categoryRepository->getAllCategories();
+  public function index()
+  {
+  	$categories = $this->categoryRepository->getAllCategories();
 
-    	return CategoryResource::collection($categories);
+  	return CategoryResource::collection($categories);
+  }
+
+  public function store(Request $request) 
+  {
+
+  }
+
+  public function edit($id) 
+  {
+  	$category = $this->categoryRepository->findOrFail($id);
+  	return new CategoryResource($category);
+  }
+
+  public function update(Request $request, $id)
+  {
+    $data = $request->all();
+    unset($data['id']);
+    if ($this->categoryRepository->update($data, $id)) {
+      $category = $this->categoryRepository->findOrFail($id);
+      return new CategoryResource($category);
     }
+  }
 
-    public function store(Request $request) 
-    {
-
+  public function destroy($id)
+  {
+    $category = $this->categoryRepository->findOrFail($id);
+    if ($this->categoryRepository->delete($id)) {
+      return new CategoryResource($category);
     }
-
-    public function edit($id) 
-    {
-    	$category = $this->categoryRepository->findOrFail($id);
-    	return new CategoryResource($category);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $data = $request->all();
-        unset($data['id']);
-        if ($this->categoryRepository->update($data, $id)) {
-            $category = $this->categoryRepository->findOrFail($id);
-            return new CategoryResource($category);
-        }
-    }
-
-    public function destroy($id)
-    {
-        $category = $this->categoryRepository->findOrFail($id);
-        if ($this->categoryRepository->delete($id)) {
-            return new CategoryResource($category);
-        }
-    }
+  }
 }

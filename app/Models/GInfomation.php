@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class GInfomation extends Model
 {
-    protected $table = 'g_infomations';
+  protected $table = 'g_infomations';
 }

@@ -16,10 +16,10 @@ class ArticleTypeController extends Controller
 		$this->articleTypeRepository = $articleTypeRepository;
 	}
 
-    public function index()
-    {
-    	$articleTypes = $this->articleTypeRepository->getAllArticleTypes();
+  public function index()
+  {
+  	$articleTypes = $this->articleTypeRepository->getAllArticleTypes();
 
-    	return ArticleTypeResource::collection($articleTypes);
-    }
+  	return ArticleTypeResource::collection($articleTypes);
+  }
 }

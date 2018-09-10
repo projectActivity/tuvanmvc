@@ -4,7 +4,7 @@
         <span>
             <a id="show-shortcut">
                 
-                <img src="img/users_woman-512.png" alt="Vũ Xuân Hoàn" class="online" style="background:white;width:24px;height:24px">
+                <img src="img/users_woman-512.png" alt="Vũ Hùng Cường" class="online" style="background:white;width:24px;height:24px">
                 <span>
                     Vũ Hùng Cường
                 </span>

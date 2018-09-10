@@ -110,7 +110,18 @@ Route::group(['namespace' => 'Api'], function () {
 	// Api/Services
 	Route::get('services', [
 		'uses' => 'ServiceController@index',
-		'as' => 'api.service.index'
+		'as'   => 'api.service.index'
 	]);
 
+	// Api/Post
+	Route::get('posts', [
+		'uses' => 'PostController@index',
+		'as'   => 'api.post.index'
+	]);
+
+	// Api/Calendar 
+	Route::get('calendars', [
+		'uses' => 'CalendarController@index',
+		'as' => 'api.calendar.index'
+	]);
 });

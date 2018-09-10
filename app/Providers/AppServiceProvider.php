@@ -63,5 +63,15 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\Service\ServiceRepositoryInterface',
             'App\Repositories\Service\ServiceEloquentRepository'
         );
+
+        $this->app->bind(
+            'App\Repositories\Post\PostRepositoryInterface',
+            'App\Repositories\Post\PostEloquentRepository'
+        );
+
+        $this->app->bind(
+            'App\Repositories\Calendar\CalendarRepositoryInterface',
+            'App\Repositories\Calendar\CalendarEloquentRepository'
+        );
     }
 }
